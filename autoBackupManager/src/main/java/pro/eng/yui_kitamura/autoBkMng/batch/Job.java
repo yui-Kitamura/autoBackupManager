@@ -10,7 +10,7 @@ import java.nio.file.Path;
 
 public class Job{
 	
-	private Path bkFilPath;
+	private Path bkFilePath;
 	
 	public void run() {
 		
@@ -39,7 +39,8 @@ public class Job{
 			throw new RuntimeException(new IOException(warnMsg));
 		}
 		
-		bkFilPath = dir.toPath();
+		bkFilePath = dir.toPath();
+		logger.log(Level.INFO, bkFilePath);
 	}
 	
 }
