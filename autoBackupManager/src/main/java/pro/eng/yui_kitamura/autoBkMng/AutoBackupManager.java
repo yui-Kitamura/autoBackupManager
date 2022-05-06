@@ -24,8 +24,12 @@ public class AutoBackupManager{
 		logger.log(Level.INFO, "Auto Backup Manager START running -->");
 		
 		Job job = new Job();
-		job.run();
-		
+		try {
+			job.run();
+		}catch(RuntimeException e) {
+			logger.log(Level.ERROR, e);
+			logger.log(Level.ERROR, "job ends with the ERROR");
+		}
 		logger.log(Level.INFO, "Auto Backup Manager END running <--");
 	}
 	
