@@ -34,7 +34,9 @@ public class AutoBackupManager{
 	}
 	
 	public static String getProp(String key) {
-		return props.getProperty(key);
+		String val = props.getProperty(key);
+		logger.log(Level.DEBUG, "PROP:"+ key + "="+ val);
+		return val;
 	}
 	
 	private static void loadProps() {
