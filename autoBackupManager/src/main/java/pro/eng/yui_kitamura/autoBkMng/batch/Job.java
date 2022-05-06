@@ -19,7 +19,7 @@ public class Job{
 		findPath();
 	
 		
-		logger.log(Level.INFO, "batch Job END running -->");
+		logger.log(Level.INFO, "batch Job END running <--");
 		
 	}
 	
