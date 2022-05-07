@@ -115,7 +115,13 @@ public class Job{
 		List<Path> deleteTargetList = new ArrayList<>();
 		Calendar aWeekAgo = Calendar.getInstance();
 		aWeekAgo.add(Calendar.DAY_OF_MONTH, -7);
-		for(int idx = 0; idx < existBkDatePath.size()-1; idx++) {
+		int dateCnt = existBkDatePath.size();
+		for(int idx = 0; idx < dateCnt; idx++) {
+			if(idx == dateCnt-1) {
+				logger.log(Level.INFO, "save the data on "+ existBkDatePath.get(dateCnt-1).getFileName());
+				continue;
+			}
+			
 			int curDate = Integer.parseInt(existBkDatePath.get(idx).getFileName().toString());
 			int nextDate = Integer.parseInt(existBkDatePath.get(idx + 1).getFileName().toString());
 			
@@ -135,7 +141,6 @@ public class Job{
 			}
 			deleteTargetList.add(existBkDatePath.get(idx));
 		}
-		logger.log(Level.INFO, "save the data on "+ existBkDatePath.get(existBkDatePath.size()-1).getFileName());
 		
 		for(Path deleteTarget : deleteTargetList) {
 			logger.log(Level.INFO, "delete the dir "+ deleteTarget);
