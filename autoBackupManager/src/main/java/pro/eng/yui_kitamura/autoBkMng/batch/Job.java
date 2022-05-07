@@ -80,10 +80,8 @@ public class Job{
 		File[] dateDirs = machinePath.toFile().listFiles();
 		List<Path> existBkDatePath = new ArrayList<>();
 		for(File dateDir : dateDirs) {
-			File winImgDir = new File(dateDir.getPath() + File.separator + "WindowsImageBackup");
-			if(!winImgDir.exists()) {
-				logger.log(Level.INFO, "no winImgBk folder found under machine "+ machinePath.getFileName() 
-							+", date "+ dateDir.getName());
+			if(dateDir.isFile()) {
+				logger.log(Level.INFO, dateDir + " is a file");
 				continue;
 			}
 			try {
@@ -91,6 +89,12 @@ public class Job{
 			}catch(NumberFormatException nfe) {
 				String errMsg = "dir name format is not a date "+ nfe.getMessage();
 				logger.log(Level.WARNING, errMsg);
+				continue;
+			}
+			File winImgDir = new File(dateDir.getPath() + File.separator + "WindowsImageBackup");
+			if(!winImgDir.exists()) {
+				logger.log(Level.INFO, "no winImgBk folder found under machine "+ machinePath.getFileName() 
+							+", date "+ dateDir.getName());
 				continue;
 			}
 			existBkDatePath.add(dateDir.toPath());
