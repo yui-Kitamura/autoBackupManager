@@ -100,7 +100,7 @@ public class Job{
 			existBkDatePath.add(dateDir.toPath());
 		}
 		
-		//check delete target
+		//sort delete target
 		existBkDatePath.sort((p1, p2) -> {
 			int p1i = Integer.parseInt(p1.getFileName().toString());
 			int p2i = Integer.parseInt(p2.getFileName().toString());
